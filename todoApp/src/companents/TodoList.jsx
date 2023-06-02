@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTodos, putTodoById, removeToDo, toggleTodo } from "../store/todoSlice";
+import { deleteTodoById, getTodos, putTodoById, removeToDo, toggleTodo } from "../store/todoSlice";
 
 const TodoList = () => {
    let dispatch = useDispatch();
@@ -22,42 +22,13 @@ const TodoList = () => {
     );
   };
 
-  // const removeToDos = (id) => {
-  //   dispatch(removeToDo(id));
-  // };
+  const removeToDos = (id) => {
+    dispatch(deleteTodoById(id));
+  };
 
-  // let dispatch = useDispatch()
-
-  // useEffect(() => {
-
-  //   dispatch(getTodos())
-  //   console.log(dispatch(getTodos()))
-
-  // }, [])
+  
   return (
-    // <ul className="todo-list">
-    //   {
-    //     todoReducer.filtertodos &&
-    //     todoReducer.filtertodos.map((item, index) => (
-    //       <li className={!item.active ? "completed" : ""} key={index}>
-    //         <div className="view">
-    //           <input
-    //             className={item.active ? "toggle" : "toggle-checked"}
-    //             type="checkbox"
-    //             onClick={() => changeStyle(index)}
-    //           />
-    //           <label>{item.item}</label>
-    //           <button
-    //             className="destroy"
-    //             onClick={() => removeToDos(item.id)}
-    //           ></button>
-    //         </div>
-    //       </li>
-    //     ))
 
-    //   }
-
-    // </ul>
     <ul className="todo-list">
       {
         todos &&
@@ -73,6 +44,8 @@ const TodoList = () => {
               <label>{item.description}</label>
               <button
                 className="destroy"
+             onClick={() => removeToDos(item._id)}
+
               ></button>
             </div>
           </li>

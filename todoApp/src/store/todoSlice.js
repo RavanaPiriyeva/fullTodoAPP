@@ -102,7 +102,7 @@ const todoSlice = createSlice({
             state.error = payload;
         },
         [deleteTodoById.fulfilled]: (state, { payload }) => {
-            state.todos = state.todos.filter(todo => todo.id !== payload);
+            state.todos = state.todos.filter(todo => todo._id !== payload);
             state.loading = false;
             state.error = null;
         },
@@ -116,7 +116,7 @@ const todoSlice = createSlice({
           },
           [putTodoById.fulfilled]: (state, { payload }) => {
             const updatedTodoIndex = state.todos.findIndex(
-              (todo) => todo.id === payload.id
+              (todo) => todo._id === payload._id
             );
             if (updatedTodoIndex !== -1) {
               state.todos[updatedTodoIndex] = payload;
